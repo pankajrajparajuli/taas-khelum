@@ -1,0 +1,236 @@
+pankajrajparajuli@pinocchio ~ % cd Projects/Personal/taas-khelum 
+pankajrajparajuli@pinocchio taas-khelum % tree -I "node_modules"
+.
+├── client
+│   ├── README.md
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── cards
+│   │   ├── favicon.svg
+│   │   ├── music
+│   │   ├── sounds
+│   │   └── ui
+│   ├── src
+│   │   ├── App.tsx
+│   │   ├── assets
+│   │   │   ├── backgrounds
+│   │   │   ├── icons
+│   │   │   ├── images
+│   │   │   └── logos
+│   │   ├── components
+│   │   │   ├── cards
+│   │   │   │   ├── CardAnimation
+│   │   │   │   ├── Deck
+│   │   │   │   └── PlayingCard
+│   │   │   ├── common
+│   │   │   │   ├── Button
+│   │   │   │   ├── Input
+│   │   │   │   ├── Loader
+│   │   │   │   ├── Modal
+│   │   │   │   └── Navbar
+│   │   │   ├── game
+│   │   │   │   ├── GameBoard
+│   │   │   │   ├── GameControls
+│   │   │   │   ├── ScoreBoard
+│   │   │   │   └── TurnIndicator
+│   │   │   └── players
+│   │   │       ├── PlayerAvatar
+│   │   │       ├── PlayerHand
+│   │   │       └── PlayerInfo
+│   │   ├── config
+│   │   │   ├── constants.ts
+│   │   │   └── env.ts
+│   │   ├── context
+│   │   │   ├── GameContext.tsx
+│   │   │   └── SocketContext.tsx
+│   │   ├── game
+│   │   │   ├── Game.ts
+│   │   │   ├── animations
+│   │   │   │   ├── dealCards.ts
+│   │   │   │   ├── flipCard.ts
+│   │   │   │   ├── moveCard.ts
+│   │   │   │   ├── shuffleDeck.ts
+│   │   │   │   └── winAnimation.ts
+│   │   │   ├── constants
+│   │   │   │   ├── cardConstants.ts
+│   │   │   │   └── gameConstants.ts
+│   │   │   ├── managers
+│   │   │   │   ├── AnimationManager.ts
+│   │   │   │   ├── AudioManager.ts
+│   │   │   │   └── SceneManager.ts
+│   │   │   ├── objects
+│   │   │   │   ├── Card.ts
+│   │   │   │   ├── Chip.ts
+│   │   │   │   ├── Deck.ts
+│   │   │   │   ├── Player.ts
+│   │   │   │   └── Table.ts
+│   │   │   ├── scenes
+│   │   │   │   ├── BootScene.ts
+│   │   │   │   ├── EndScene.ts
+│   │   │   │   ├── LobbyScene.ts
+│   │   │   │   ├── MenuScene.ts
+│   │   │   │   ├── PreloadScene.ts
+│   │   │   │   ├── ResultScene.ts
+│   │   │   │   ├── TableScene.ts
+│   │   │   │   └── UIScene.ts
+│   │   │   ├── types
+│   │   │   │   ├── card.ts
+│   │   │   │   ├── game.ts
+│   │   │   │   └── player.ts
+│   │   │   └── utils
+│   │   │       ├── animationHelpers.ts
+│   │   │       ├── cardHelpers.ts
+│   │   │       └── positionHelpers.ts
+│   │   ├── hooks
+│   │   │   ├── useAnimation.ts
+│   │   │   ├── useGame.ts
+│   │   │   ├── usePlayer.ts
+│   │   │   └── useSocket.ts
+│   │   ├── layouts
+│   │   │   ├── GameLayout.tsx
+│   │   │   └── MainLayout.tsx
+│   │   ├── main.tsx
+│   │   ├── pages
+│   │   │   ├── Game
+│   │   │   │   ├── Game.module.css
+│   │   │   │   └── Game.tsx
+│   │   │   ├── Home
+│   │   │   │   ├── Home.module.css
+│   │   │   │   └── Home.tsx
+│   │   │   ├── Lobby
+│   │   │   │   ├── Lobby.module.css
+│   │   │   │   └── Lobby.tsx
+│   │   │   ├── NotFound
+│   │   │   │   ├── NotFound.module.css
+│   │   │   │   └── NotFound.tsx
+│   │   │   └── Room
+│   │   │       ├── Room.module.css
+│   │   │       └── Room.tsx
+│   │   ├── routes
+│   │   │   └── index.tsx
+│   │   ├── services
+│   │   │   ├── gameService.ts
+│   │   │   ├── roomService.ts
+│   │   │   └── socketService.ts
+│   │   ├── socket
+│   │   │   ├── socket.ts
+│   │   │   ├── socketEvents.ts
+│   │   │   ├── socketHandlers.ts
+│   │   │   └── socketMiddleware.ts
+│   │   ├── store
+│   │   │   ├── gameStore.ts
+│   │   │   ├── playerStore.ts
+│   │   │   ├── roomStore.ts
+│   │   │   └── uiStore.ts
+│   │   ├── styles
+│   │   │   ├── animations.css
+│   │   │   ├── globals.css
+│   │   │   ├── tailwind.css
+│   │   │   └── variables.css
+│   │   ├── types
+│   │   │   ├── cards.ts
+│   │   │   ├── game.ts
+│   │   │   ├── player.ts
+│   │   │   ├── room.ts
+│   │   │   └── socket.ts
+│   │   ├── utils
+│   │   │   ├── format.ts
+│   │   │   ├── logger.ts
+│   │   │   ├── random.ts
+│   │   │   ├── shuffle.ts
+│   │   │   └── validators.ts
+│   │   └── vite-env.d.ts
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+├── folder-tree
+└── server
+    ├── package-lock.json
+    ├── package.json
+    ├── src
+    │   ├── cards
+    │   │   ├── cardTypes.ts
+    │   │   ├── deck.ts
+    │   │   ├── generators.ts
+    │   │   └── shuffle.ts
+    │   ├── config
+    │   │   ├── constants.ts
+    │   │   └── env.ts
+    │   ├── games
+    │   │   ├── callbreak
+    │   │   │   ├── engine
+    │   │   │   ├── logic
+    │   │   │   ├── rules
+    │   │   │   ├── state
+    │   │   │   ├── types
+    │   │   │   └── utils
+    │   │   ├── jutpatti
+    │   │   │   ├── engine
+    │   │   │   ├── logic
+    │   │   │   ├── rules
+    │   │   │   ├── state
+    │   │   │   ├── types
+    │   │   │   └── utils
+    │   │   └── teenpatti
+    │   │       ├── engine
+    │   │       ├── logic
+    │   │       ├── rules
+    │   │       ├── state
+    │   │       ├── types
+    │   │       └── utils
+    │   ├── index.ts
+    │   ├── players
+    │   │   ├── playerManager.ts
+    │   │   ├── playerStore.ts
+    │   │   └── playerTypes.ts
+    │   ├── rooms
+    │   │   ├── matchmaking.ts
+    │   │   ├── roomManager.ts
+    │   │   ├── roomStore.ts
+    │   │   └── roomTypes.ts
+    │   ├── services
+    │   │   ├── gameService.ts
+    │   │   ├── playerService.ts
+    │   │   └── roomService.ts
+    │   ├── socket
+    │   │   ├── events
+    │   │   │   ├── clientEvents.ts
+    │   │   │   ├── gameEvents.ts
+    │   │   │   └── serverEvents.ts
+    │   │   ├── handlers
+    │   │   │   ├── connectionHandler.ts
+    │   │   │   ├── disconnectHandler.ts
+    │   │   │   ├── gameHandler.ts
+    │   │   │   ├── playerHandler.ts
+    │   │   │   └── roomHandler.ts
+    │   │   ├── index.ts
+    │   │   └── middleware
+    │   │       └── socketMiddleware.ts
+    │   ├── state
+    │   │   ├── gameState.ts
+    │   │   ├── scoreState.ts
+    │   │   └── turnState.ts
+    │   ├── tests
+    │   │   ├── games
+    │   │   ├── socket
+    │   │   └── utils
+    │   ├── types
+    │   │   ├── cards.ts
+    │   │   ├── game.ts
+    │   │   ├── player.ts
+    │   │   ├── room.ts
+    │   │   └── socket.ts
+    │   └── utils
+    │       ├── generateRoomCode.ts
+    │       ├── logger.ts
+    │       ├── random.ts
+    │       ├── timer.ts
+    │       └── validators.ts
+    └── tsconfig.json
+
+98 directories, 133 files
+pankajrajparajuli@pinocchio taas-khelum % 
