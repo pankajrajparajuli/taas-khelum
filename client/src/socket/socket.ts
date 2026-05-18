@@ -1,33 +1,38 @@
 import { io, Socket } from "socket.io-client";
+import { ENV } from "../config/env";
 
-const SOCKET_URL = "http://localhost:5001";
+let socketInstance: Socket | null = null;
 
-class SocketService {
-  private socket: Socket | null = null;
-
-  connect() {
-    if (this.socket?.connected) return;
-
-    this.socket = io(SOCKET_URL, {
+export const getSocket = (): Socket => {
+  if (!socketInstance) {
+    socketInstance = io(ENV.SOCKET_URL, {
       transports: ["websocket"],
-      autoConnect: true,
+      reconnection: true,
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 5000,
+      reconnectionAttempts: 5,
     });
 
-    this.socket.on("connect", () => {
-      console.log("🟢 Connected:", this.socket?.id);
+    socketInstance.on("connect", () => {
+      console.log("[SOCKET] ✅ Connected:", socketInstance?.id);
     });
 
-    this.socket.on("disconnect", () => {
-      console.log("🔴 Disconnected");
+    socketInstance.on("disconnect", () => {
+      console.log("[SOCKET] ❌ Disconnected");
     });
 
-    return this.socket;
+    socketInstance.on("error", (error: Error | string) => {
+      console.error("[SOCKET] ⚠️ Error:", error);
+    });
   }
 
-  getSocket() {
-    if (!this.socket) return this.connect();
-    return this.socket;
-  }
-}
+  return socketInstance;
+};
 
-export const socketService = new SocketService();
+export const disconnectSocket = (): void => {
+  if (socketInstance) {
+    socketInstance.disconnect();
+    socketInstance = null;
+    console.log("[SOCKET] Socket disconnected and cleared");
+  }
+};

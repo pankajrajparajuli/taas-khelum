@@ -4,11 +4,18 @@ import { initSocket } from "./socket";
 
 const server = http.createServer(app);
 
-// socket init
+// Initialize Socket.IO
 initSocket(server);
 
 const PORT = process.env.PORT || 5001;
 
 server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`
+╔══════════════════════════════════════════════════════════╗
+║  🎴 Card Game Server                                     ║
+║  Running on port ${PORT}                            ║
+║  Socket.IO ready for connections                        ║
+║  Frontend: http://localhost:5173                        ║
+╚══════════════════════════════════════════════════════════╝
+  `);
 });

@@ -1,28 +1,52 @@
-import { create } from "zustand";
+import { useState, useCallback } from "react";
+import type { Player, GameState as GameStateType } from "../types";
 
-type GameState = {
+interface GameStoreType {
   roomId: string | null;
-  playerName: string;
-  players: any[];
-  gameState: any;
+  playerName: string | null;
+  players: Player[];
+  gameState: GameStateType | null;
   lastEvent: string;
-  setRoomId: (id: string) => void;
-  setPlayerName: (name: string) => void;
-  setPlayers: (p: any[]) => void;
-  setGameState: (s: any) => void;
+  isConnected: boolean;
+  setRoomId: (id: string | null) => void;
+  setPlayerName: (name: string | null) => void;
+  setPlayers: (p: Player[]) => void;
+  setGameState: (s: GameStateType | null) => void;
   setLastEvent: (e: string) => void;
+  setIsConnected: (connected: boolean) => void;
+  reset: () => void;
+}
+
+export const useGameStore = (): GameStoreType => {
+  const [roomId, setRoomId] = useState<string | null>(null);
+  const [playerName, setPlayerName] = useState<string | null>(null);
+  const [players, setPlayers] = useState<Player[]>([]);
+  const [gameState, setGameState] = useState<GameStateType | null>(null);
+  const [lastEvent, setLastEvent] = useState<string>("");
+  const [isConnected, setIsConnected] = useState<boolean>(false);
+
+  const reset = useCallback(() => {
+    setRoomId(null);
+    setPlayerName(null);
+    setPlayers([]);
+    setGameState(null);
+    setLastEvent("");
+    setIsConnected(false);
+  }, []);
+
+  return {
+    roomId,
+    playerName,
+    players,
+    gameState,
+    lastEvent,
+    isConnected,
+    setRoomId,
+    setPlayerName,
+    setPlayers,
+    setGameState,
+    setLastEvent,
+    setIsConnected,
+    reset,
+  };
 };
-
-export const useGameStore = create<GameState>((set) => ({
-  roomId: null,
-  playerName: "",
-  players: [],
-  gameState: null,
-  lastEvent: "",
-
-  setRoomId: (id) => set({ roomId: id }),
-  setPlayerName: (name) => set({ playerName: name }),
-  setPlayers: (p) => set({ players: p }),
-  setGameState: (s) => set({ gameState: s }),
-  setLastEvent: (e) => set({ lastEvent: e }),
-}));

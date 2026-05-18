@@ -1,21 +1,4 @@
-import { socketService } from "./socket";
+// This file is kept for backward compatibility
+// All socket event handlers are now in events.ts
 
-export const emitJoinRoom = (roomId: string, playerName: string) => {
-  const socket = socketService.getSocket();
-  socket.emit("game:join_room", { roomId, playerName });
-};
-
-export const emitStartGame = (roomId: string) => {
-  const socket = socketService.getSocket();
-  socket.emit("game:start", { roomId });
-};
-
-export const onRoomUpdate = (cb: (data: any) => void) => {
-  const socket = socketService.getSocket();
-  socket.on("game:room_update", cb);
-};
-
-export const onGameState = (cb: (data: any) => void) => {
-  const socket = socketService.getSocket();
-  socket.on("game:state_update", cb);
-};
+export { emitJoinRoom, emitStartGame, emitLeaveRoom, onRoomUpdate, onGameStateUpdate as onGameState, onError, onGameEnd } from "./events";
