@@ -2,7 +2,7 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
 
     // Environment Settings
@@ -13,7 +13,7 @@
     "esModuleInterop": true,
     "types": ["node"],
     "ignoreDeprecations": "6.0",
-    // For nodejs:
+    "lib": ["ES2020"],// For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
@@ -45,9 +45,10 @@
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*"
-    ],
-    "exclude": [
+    "**/*",
+    "prisma.config.ts"
+  ],
+  "exclude": [
     "node_modules",
     "dist",
     "prisma"
