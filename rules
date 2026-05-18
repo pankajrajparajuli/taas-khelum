@@ -1,0 +1,181 @@
+🧱 🛑 STRICT ARCHITECTURE RULES (DO NOT BREAK THESE)
+🔌 1. SOCKET RULES (REALTIME LAYER)
+
+📁 src/socket/
+
+✅ ALLOWED
+emit events
+listen events
+socket connection
+event constants
+middleware (auth, retry)
+❌ FORBIDDEN
+React code (hooks, JSX)
+game logic (cards, rules)
+UI state
+API calls (REST)
+🧠 RULE
+
+“Socket only moves data, never decides meaning.”
+
+🎮 2. GAME ENGINE RULES
+
+📁 src/game/
+
+✅ ALLOWED
+card logic
+shuffle / deal / rules
+animations
+game state calculations
+Phaser scenes / objects
+❌ FORBIDDEN
+socket.emit / socket.on
+React state (use store instead)
+API calls
+UI components
+🧠 RULE
+
+“Game folder does NOT know network exists.”
+
+🧠 3. STORE RULES (GLOBAL STATE)
+
+📁 src/store/
+
+✅ ALLOWED
+player state
+room state
+game state
+UI state (loading, modal, etc)
+❌ FORBIDDEN
+direct socket calls
+DOM manipulation
+game logic calculations
+🧠 RULE
+
+“Store only stores, it does NOT compute game logic.”
+
+⚛️ 4. CONTEXT RULES (REACT BRIDGE ONLY)
+
+📁 src/context/
+
+✅ ALLOWED
+SocketProvider
+GameProvider
+auth/session provider
+❌ FORBIDDEN
+business logic
+game rules
+socket event logic
+🧠 RULE
+
+“Context is plumbing, not logic.”
+
+🌐 5. SERVICES RULES (API ONLY)
+
+📁 src/services/
+
+✅ ALLOWED
+REST API calls
+HTTP requests
+backend communication (non-socket)
+❌ FORBIDDEN
+socket logic
+game logic
+UI state
+🧠 RULE
+
+“Services talk to backend, not to game.”
+
+🧩 6. TYPES RULES (GLOBAL CONTRACTS)
+
+📁 src/types/
+
+✅ ALLOWED
+Player type
+Room type
+GameState type
+Socket event types
+❌ FORBIDDEN
+functions
+constants
+logic
+🧠 RULE
+
+“Types describe data only, nothing else.”
+
+🧰 7. UTILS RULES
+
+📁 src/utils/
+
+✅ ALLOWED
+pure helper functions
+formatting
+random generators
+validation
+❌ FORBIDDEN
+socket usage
+state usage
+game rules (those belong in game/)
+🧠 RULE
+
+“Utils must be pure functions (no side effects).”
+
+🎨 8. COMPONENT RULES
+
+📁 src/components/
+
+✅ ALLOWED
+UI only
+props-based logic
+animations triggers (not logic)
+❌ FORBIDDEN
+socket logic
+game rules
+store mutations
+🧠 RULE
+
+“Components only display, they don’t decide.”
+
+📄 9. PAGE RULES
+
+📁 src/pages/
+
+✅ ALLOWED
+layout composition
+calling hooks
+UI orchestration
+❌ FORBIDDEN
+heavy logic
+game rules
+socket logic directly
+🧠 RULE
+
+“Pages glue everything together, they don’t compute.”
+
+🔥 10. GAME FLOW RULE (MOST IMPORTANT)
+
+You MUST always follow this flow:
+
+UI → store/context → socket → backend → socket → store → UI
+
+❌ NEVER:
+
+UI → socket → game logic → UI (bad coupling)
+⚠️ 11. SOCKET IS SINGLE SOURCE OF TRUTH
+Only ONE socket instance
+No multiple socket creations
+No socket inside components directly
+⚡ 12. NO DUPLICATE LOGIC RULE
+
+If logic exists in:
+
+game/
+utils/
+store/
+
+👉 It must exist ONLY in ONE place.
+
+🧠 13. TYPE SAFETY RULE
+Every socket event MUST have a type
+Every game state MUST have a type
+No any in multiplayer logic
